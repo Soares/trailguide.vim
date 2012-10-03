@@ -1,0 +1,118 @@
+*trailguide.txt*  Navigate past trailing whitespace.
+                                                *trailguide* *TrailGuide*
+
+Author:  Nate Soares <http://so8r.es/>
+License: Same terms as Vim itself (see |license|)
+
+=============================================================================
+CONTENTS                                        *trailguide-contents*
+	    1. Introduction..............................|trailguide-intro|
+	    2. Configuration.............................|trailguide-config|
+	    3. Commands..................................|trailguide-commands|
+	    4. Extras....................................|trailguide-extras|
+	    5. About.....................................|trailguide-about|
+
+=============================================================================
+INTRODUCTION                                    *trailguide-intro*
+
+TrailGuide helps you out with trailing whitespace. It helps you:
+
+- Highlight trailing whitespace
+- Remove trailing whitespace
+- Navigate trailing whitespace
+- Place trailing whitespace warnings in your statusline
+
+=============================================================================
+CONFIGURATION                                   *trailguide-config*
+
+g:trailguide#autohl                             *trailguide-autohl*
+
+	Whether or not to automatically highlight trailing whitespace.
+	Default 0.
+
+g:trailguide#matchgroup                         *trailguide-matchgroup*
+
+	The matchgroup for trailing whitespace. Default: |ErrorMsg|.
+
+trailguide#AddException(filetype)               *trailguide-AddException()*
+
+	Add an exception for a filetype. Trailing whitespace in that filetype
+	will not trigger status line warnings or be automatically highlighted,
+        however TrailGuideShow, TrailGuideFix, and etc. will still work.
+
+trailguide#RemoveException(filetype)            *trailguide-RemoveException()*
+
+	Removes a filetype exception.
+
+=============================================================================
+COMMANDS                                        *trailguide-commands*
+
+:TrailGuideNext                                 *trailguide-TrailGuideNext*
+
+	Jump to the next trailing whitespace.
+
+:TrailGuidePrev                                 *trailguide-TrailGuidePrev*
+
+	Jump to the previous trailing whitespace.
+
+:TrailGuideFix                                  *trailguide-TrailGuideFix*
+
+	Eliminating all trailing whitespace in the given range (default to
+	whole file).
+
+:TrailGuideShow                                 *trailguide-Show*
+
+	Highlight trailing whitespace in the file.
+
+:TrailGuideHide                                 *trailguide-Hide*
+
+	Unhighlight trailing whitespace in the file.
+
+:TrailGuideToggle                               *trailguide-Toggle*
+
+	Toggle the highlighting of trailing whitespace in the file.
+
+=============================================================================
+EXTRAS                                          *trailguide-extras*
+
+Status Line                                     *trailguide-statusline*
+                                                *trailguide-HasTrailing()*
+
+	trailguide does not change your status line, but it does provide hooks
+	for you to add a trailing whitespace warning to your status line.
+	The function 'trailguide#HasTrailing()' returns non-zero if a long
+	line exists in the file. We recommend adding >
+
+		set statusline+=%#WarningMsg#
+		set statusline+=%{trailguide#HasTrailing()?'[$]':''}
+		set statusline+=%*
+<
+	or something of the sort to your statusline.
+
+	NOTE: If you want to conditionally add the warning to your statusline
+	dependent upon whether trailguide is loaded, don't use the |exists()|
+	function. |trailguide#HasTrailing()| is autoloaded, so it won't
+	necessarily exist until you call it. Use |try| instead.
+<
+Mappings                                        *trailguide-mappings*
+
+	trailguide does not change your mappings. We recommend that you add
+	your own mappings to trailguide, as follows: >
+
+		" Mappings under <leader>w
+		" Mnemonic: 'whitespace'
+		noremap <leader>wn :TrailGideNext<CR>
+		noremap <leader>wp :TrailGidePrev<CR>
+		noremap <leader>ww :TrailGideFix<CR>
+		noremap <leader>wt :TrailGuideToggle<CR>
+<
+	Tailor these to your needs.
+
+=============================================================================
+ABOUT                                           *trailguide-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/Soares/trailguide.vim
+
+ vim:tw=78:ts=8:sw=0:sts=8:noet:ft=help:norl:

@@ -1,0 +1,17 @@
+LongLine	longline.txt	/*LongLine*
+longline	longline.txt	/*longline*
+longline-:LongLine	longline.txt	/*longline-:LongLine*
+longline-Hide	longline.txt	/*longline-Hide*
+longline-MaxLength	longline.txt	/*longline-MaxLength*
+longline-Show	longline.txt	/*longline-Show*
+longline-Toggle	longline.txt	/*longline-Toggle*
+longline-about	longline.txt	/*longline-about*
+longline-commands	longline.txt	/*longline-commands*
+longline-contents	longline.txt	/*longline-contents*
+longline-filetype_map	longline.txt	/*longline-filetype_map*
+longline-functions	longline.txt	/*longline-functions*
+longline-intro	longline.txt	/*longline-intro*
+longline-matchgroup	longline.txt	/*longline-matchgroup*
+longline-maxlength	longline.txt	/*longline-maxlength*
+longline-options	longline.txt	/*longline-options*
+longline.txt	longline.txt	/*longline.txt*
