@@ -7,6 +7,6 @@ to:
 - Fix trailing whitespace
 - Highlight trailing whitespace
 - Alert you about trailing whitespace in the statusline
-- Jump to trailing whitespace
+- Navigate trailing whitespace
 
-See the help documentation for details.
+See the help for details.

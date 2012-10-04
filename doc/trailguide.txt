@@ -25,88 +25,72 @@ TrailGuide helps you out with trailing whitespace. It helps you:
 =============================================================================
 CONFIGURATION                                   *trailguide-config*
 
-g:trailguide#autohl                             *trailguide-autohl*
+						*g:loaded_trailguide*
+Use this to disable the plugin entirely: >
+	let g:loaded_trailguide = 1
+<
 
-	Whether or not to automatically highlight trailing whitespace.
-	Default 0.
+						*g:trailguide_autohl*
+Whether or not to automatically highlight trailing whitespace. Default: 0.
 
-g:trailguide#matchgroup                         *trailguide-matchgroup*
+						*g:trailguide_matchgroup*
+The matchgroup for trailing whitespace. Default: |ErrorMsg|.
 
-	The matchgroup for trailing whitespace. Default: |ErrorMsg|.
-
-trailguide#AddException(filetype)               *trailguide-AddException()*
-
-	Add an exception for a filetype. Trailing whitespace in that filetype
-	will not trigger status line warnings or be automatically highlighted,
-        however TrailGuideShow, TrailGuideFix, and etc. will still work.
-
-trailguide#RemoveException(filetype)            *trailguide-RemoveException()*
-
-	Removes a filetype exception.
+						*g:trailguide_exceptions*
+A dictionary of filetypes. If the filetype's value is <= 0 then whitespace
+warnings do not apply to that filetype. For example: >
+	let g:trailguide_exceptions={'vim': 0}
+<
+disables trailing whitespace warnings for vim files.
 
 =============================================================================
 COMMANDS                                        *trailguide-commands*
 
-:TrailGuideNext                                 *trailguide-TrailGuideNext*
+						*:TrailGuideNext*
+Jump to the next trailing whitespace.
 
-	Jump to the next trailing whitespace.
+						*:TrailGuidePrev*
+Jump to the previous trailing whitespace.
 
-:TrailGuidePrev                                 *trailguide-TrailGuidePrev*
+						*:TrailGuideShow*
+Highlight trailing whitespace.
 
-	Jump to the previous trailing whitespace.
+						*:TrailGuideHide*
+Unhighlight trailing whitespace.
 
-:TrailGuideFix                                  *trailguide-TrailGuideFix*
+						*:TrailGuideToggle*
+Toggle the highlighting of trailing whitespace.
 
-	Eliminating all trailing whitespace in the given range (default to
-	whole file).
-
-:TrailGuideShow                                 *trailguide-Show*
-
-	Highlight trailing whitespace in the file.
-
-:TrailGuideHide                                 *trailguide-Hide*
-
-	Unhighlight trailing whitespace in the file.
-
-:TrailGuideToggle                               *trailguide-Toggle*
-
-	Toggle the highlighting of trailing whitespace in the file.
+						*:TrailGuideFix*
+Eliminating all trailing whitespace in the given range. Default: whole file.
 
 =============================================================================
 EXTRAS                                          *trailguide-extras*
 
 Status Line                                     *trailguide-statusline*
-                                                *trailguide-HasTrailing()*
-
-	trailguide does not change your status line, but it does provide hooks
-	for you to add a trailing whitespace warning to your status line.
-	The function 'trailguide#HasTrailing()' returns non-zero if a long
-	line exists in the file. We recommend adding >
-
-		set statusline+=%#WarningMsg#
-		set statusline+=%{trailguide#HasTrailing()?'[$]':''}
-		set statusline+=%*
+                                                *trailguide#HasTrailing()*
+TrailGuide does not change your status line, but it does provide hooks for you
+to add a trailing whitespace warning to your status line.  The function
+'trailguide#HasTrailing()' returns non-zero if a long line exists in the file.
+We recommend adding >
+	set statusline+=%#WarningMsg#
+	set statusline+=%{trailguide#HasTrailing()?'[$]':''}
+	set statusline+=%*
 <
-	or something of the sort to your statusline.
+or something of the sort to your statusline.
 
-	NOTE: If you want to conditionally add the warning to your statusline
-	dependent upon whether trailguide is loaded, don't use the |exists()|
-	function. |trailguide#HasTrailing()| is autoloaded, so it won't
-	necessarily exist until you call it. Use |try| instead.
-<
 Mappings                                        *trailguide-mappings*
 
-	trailguide does not change your mappings. We recommend that you add
-	your own mappings to trailguide, as follows: >
-
-		" Mappings under <leader>w
-		" Mnemonic: 'whitespace'
-		noremap <leader>wn :TrailGideNext<CR>
-		noremap <leader>wp :TrailGidePrev<CR>
-		noremap <leader>ww :TrailGideFix<CR>
-		noremap <leader>wt :TrailGuideToggle<CR>
+trailguide does not change your mappings. We recommend that you add
+your own mappings to trailguide, as follows: >
+	" Mappings under <leader>w
+	" Mnemonic: 'whitespace'
+	noremap <leader>wn :TrailGideNext<CR>
+	noremap <leader>wp :TrailGidePrev<CR>
+	noremap <leader>ww :TrailGideFix<CR>
+	noremap <leader>wt :TrailGuideToggle<CR>
 <
-	Tailor these to your needs.
+Tailor these to your needs.
 
 =============================================================================
 ABOUT                                           *trailguide-about*
