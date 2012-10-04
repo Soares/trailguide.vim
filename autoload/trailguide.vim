@@ -5,22 +5,6 @@ let g:trailguide#autoload = 1
 
 let s:regex = '\m\s\+$'
 
-
-" The matchgroup to use for trailing whitespace.
-if !exists('g:trailguide#matchgroup')
-	let g:trailguide#matchgroup = 'ErrorMsg'
-endif
-
-" Filetypes in which to allow trailing whitespace.
-if !exists('g:trailguide#exceptions')
-	let g:trailguide#exceptions = {}
-endif
-
-" Whether to automatically highlight trailing whitespace.
-if !exists('g:trailguide#autohl')
-	let g:trailguide#autohl = 0
-endif
-
 " Highlights trailing whitespace a certain color.
 function! s:TrailMatch(type)
 	exe 'match '.a:type.' "'.s:regex.'"'
@@ -32,23 +16,7 @@ endfunction
 "   {string} filetype the filetype to check. Defaults to &ft.
 function! trailguide#Cares(...)
 	let l:ft = a:0 > 0 ? a:1 : &ft
-	return get(g:trailguide#exceptions, l:ft) == 0
-endfunction
-
-
-" Marks a filetype as exempt from trailguide's complaints.
-" Args:
-"   {string} filetype the filetype to exempt.
-function! trailguide#AddException(filetype)
-	let g:trailguide#exceptions[a:filetype] = 1
-endfunction!
-
-
-" Unmarks a filetype as exempt from trailguide's complaints.
-" Args:
-"   {string} filetype the filetype to unexempt.
-function! trailguide#RemoveException(filetype)
-	try | call remove(g:trailguide#exceptions, a:filetype) | endtry
+	return get(g:trailguide_exceptions, l:ft) == 0
 endfunction
 
 
@@ -84,7 +52,7 @@ endfunction
 " Shows trailing whitespace.
 function! trailguide#Show()
 	let b:trailguide_showing = 1
-	call s:TrailMatch(g:trailguide#matchgroup)
+	call s:TrailMatch(g:trailguide_matchgroup)
 endfunction
 command! ShowTrailingWhitespace call trailguide#Show()
 
