@@ -39,11 +39,9 @@ Whether or not to automatically highlight trailing whitespace. Default: 0.
 The matchgroup for trailing whitespace. Default: |ErrorMsg|.
 
 						*g:trailguide_exceptions*
-A dictionary of filetypes. If the filetype's value is <= 0 then whitespace
-warnings do not apply to that filetype. For example, the following disables
-trailing whitespace warnings for vim files: >
-	let g:trailguide_exceptions={'vim': 0}
-<
+A list of filetypes where trailing whitespace does not matter. Warnings will
+not be displayed for those filetypes. Automatic highlighting will not
+highlight trailing whitespace in those filetypes. Commands will still work.
 
 						*g:trailguide_automap*
 Makes the default key bindings. See |trailguide-mappings|. Disabled by

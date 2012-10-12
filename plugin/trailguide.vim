@@ -10,7 +10,7 @@ let g:loaded_trailguide = 1
 
 " Filetypes in which to allow trailing whitespace.
 if !exists('g:trailguide_exceptions')
-	let g:trailguide_exceptions = {}
+	let g:trailguide_exceptions = []
 endif
 
 

@@ -19,7 +19,7 @@ endfunction
 " @param {string?} The filetype to check. Default &ft.
 function! trailguide#cares(...)
 	let l:ft = a:0 > 0 ? a:1 : &ft
-	return get(g:trailguide_exceptions, l:ft) == 0
+	return index(g:trailguide_exceptions, l:ft) == -1
 endfunction
 
 
