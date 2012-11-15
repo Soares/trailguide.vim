@@ -1,18 +1,6 @@
-if exists('g:trailguide#autoload') || &cp || v:version < 700
-	finish
-endif
-let g:trailguide#autoload = 1
-
-
 " Regular Expressions:
-let s:regex = '\m\s\+$'
-
-
-" Highlights trailing whitespace a certain color.
-" @param {string} type The syntax group to highlight with.
-function! s:trailmatch(type)
-	exe 'match '.a:type.' "'.s:regex.'"'
-endfunction
+let s:regex = '\v\s+%#@<!$'
+let s:regex_all = '\v\s+$'
 
 
 " Whether or not to care about trailing whitespace.
@@ -48,13 +36,13 @@ endfunction
 
 " Jump to the next trailing whitespace.
 function! trailguide#next()
-	call search(s:regex, 'w')
+	call search(s:regex_all, 'w')
 endfunction
 
 
 " Jump to the previous trailing whitespace.
 function! trailguide#prev()
-	call search(s:regex, 'wb')
+	call search(s:regex_all, 'wb')
 endfunction
 
 
@@ -63,15 +51,14 @@ endfunction
 " @param {number} line2 Where to end.
 function! trailguide#fix(line1, line2)
 	if !trailguide#warns() | return | endif
-	exe a:line1.','a:line2.'s/'.s:regex.'//e'
+	exe a:line1.','a:line2.'s/'.s:regex_all.'//e'
 	norm ''
 endfunction
 
 
 " Shows trailing whitespace.
 function! trailguide#show()
-	let b:trailguide_showing = 1
-	call s:trailmatch(g:trailguide_matchgroup)
+	let b:trailguide_showing = matchadd(g:trailguide_matchgroup, s:regex)
 endfunction
 
 
@@ -79,6 +66,7 @@ endfunction
 function! trailguide#hide()
 	call s:trailmatch('NONE')
 	if exists('b:trailguide_showing')
+		call matchdelete(b:trailguide_showing)
 		unlet b:trailguide_showing
 	endif
 endfunction

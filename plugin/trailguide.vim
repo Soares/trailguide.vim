@@ -1,8 +1,4 @@
-" trailguide.vim - Navigate past trailing whitespace.
-" Author:       Nate Soares <http://so8r.es>
-" Version:      1.0
-" License:      The same as vim itself. (See |license|)
-if exists('g:loaded_trailguide') || &cp || v:version < 700
+if exists('g:loaded_trailguide')
 	finish
 endif
 let g:loaded_trailguide = 1
@@ -16,7 +12,7 @@ endif
 
 " Whether or not to highlight trailing whitespace automatically.
 if !exists('g:trailguide_autohl')
-	let g:trailguide_autohl = 0
+	let g:trailguide_autohl = 1
 endif
 
 
