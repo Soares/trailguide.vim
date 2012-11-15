@@ -9,4 +9,4 @@ to:
 - Alert you about trailing whitespace in the statusline
 - Navigate trailing whitespace
 
-See the help for details.
+`:help trailguide` after installing for details.
