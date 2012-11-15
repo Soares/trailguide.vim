@@ -14,23 +14,15 @@ endfunction
 " Finds whether or not a file has trailing  whitespace.
 " @param {string?} The filetype to check. Default &ft.
 " @return {boolean} Whether there is trailing whitespace.
-function! trailguide#warns(...)
+function! trailguide#detected(...)
 	return call('trailguide#cares', a:000) ? search(s:regex, 'nw') != 0 : 0
-endfunction
-
-
-" Legacy wrapper from before function name normalization.
-" @param {string?} The filetype to check. Default &ft.
-" @return {boolean} Whether there is trailing whitespace.
-function! trailguide#HasTrailing(...)
-	return call('trailguide#warns', a:000)
 endfunction
 
 
 " Makes a statusline flag about trailing whitespace.
 " @return {string}
 function! trailguide#statusline()
-	return trailguide#warns() ? '[$]' : ''
+	return trailguide#detected() ? '[$]' : ''
 endfunction
 
 
@@ -50,7 +42,7 @@ endfunction
 " @param {number} line1 Where to start.
 " @param {number} line2 Where to end.
 function! trailguide#fix(line1, line2)
-	if !trailguide#warns() | return | endif
+	if !trailguide#detected() | return | endif
 	exe a:line1.','a:line2.'s/'.s:regex_all.'//e'
 	norm ''
 endfunction
