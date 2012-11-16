@@ -9,8 +9,8 @@ CONTENTS					*trailguide-contents*
 	    2. Configuration...........................|trailguide-config|
 	    3. Commands................................|trailguide-commands|
 	    4. Status line.............................|trailguide-statusline|
-	    5. Mappings................................|trailguide-mappings|
-	    6. Extras..................................|trailguide-extras|
+	    5. Functions...............................|trailguide-functions|
+	    6. Mappings................................|trailguide-mappings|
 	    7. About...................................|trailguide-about|
 
 =============================================================================
@@ -72,12 +72,26 @@ COMMANDS					*trailguide-commands*
 =============================================================================
 STATUSLINE                                      *trailguide-statusline*
 
-trailguide#statusline()				*trailguide#statusline()*
+trailguide#status#warning()			*trailguide#status#warning()*
 	This function returns '[$]' if trailing whitespace exists, ''
 	otherwise. Add it to your statusline like so:
 >
 		set statusline+=%#WarningMsg#
-		set statusline+=%{trailguide#statusline()}
+		set statusline+=%{trailguide#status#warning()}
+		set statusline+=%*
+<
+
+=============================================================================
+FUNCTIONS					*trailguide-fucntions*
+
+trailguide#detected()				*trailguide#detected()*
+	This function returns true if trailing whitespace exists in the file.
+	It can be used in various scripts or to make your own flavor of
+	statusline flag. For example, to emulate
+	|trailguide#status#warning()|, do
+>
+		set statusline+=%#WarningMsg#
+		set statusline+=%{trailguide#detected()?'[$]':''}
 		set statusline+=%*
 <
 
@@ -95,19 +109,6 @@ your own mappings for trailguide:
 <
 If you like these mappings you can turn them on with |g:trailguide_automap|.
 You're encouraged to customize your mappings to your own taste.
-
-=============================================================================
-EXTRAS						*trailguide-extras*
-
-trailguide#detected()				*trailguide#detected()*
-	This function returns true if trailing whitespace exists in the file.
-	It can be used in various scripts or to make your own flavor of
-	statusline flag. For example, to emulate |trailguide#statusline()|, do
->
-		set statusline+=%#WarningMsg#
-		set statusline+=%{trailguide#detected()?'[$]':''}
-		set statusline+=%*
-<
 
 =============================================================================
 ABOUT                                           *trailguide-about*

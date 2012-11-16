@@ -19,13 +19,6 @@ function! trailguide#detected(...)
 endfunction
 
 
-" Makes a statusline flag about trailing whitespace.
-" @return {string}
-function! trailguide#statusline()
-	return trailguide#detected() ? '[$]' : ''
-endfunction
-
-
 " Jump to the next trailing whitespace.
 function! trailguide#next()
 	call search(s:regex_all, 'w')
