@@ -49,9 +49,13 @@ endif
 
 
 " Make the default key mappings.
-if g:trailguide_automap
-	noremap <leader>wn :TrailGideNext<CR>
-	noremap <leader>wp :TrailGidePrev<CR>
-	noremap <leader>ww :TrailGideFix<CR>
-	noremap <leader>wt :TrailGuideToggle<CR>
+if !empty(g:trailguide_automap)
+	if type(g:trailguide_automap) == type(1)
+		let g:trailguide_automap = 'w'
+	endif
+
+	exe 'noremap <leader>'.g:trailguide_automap.'n :TrailGideNext<CR>'
+	exe 'noremap <leader>'.g:trailguide_automap.'p :TrailGidePrev<CR>'
+	exe 'noremap <leader>'.g:trailguide_automap.'w :TrailGideFix<CR>'
+	exe 'noremap <leader>'.g:trailguide_automap.'t :TrailGuideToggle<CR>'
 endif
