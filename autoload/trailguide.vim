@@ -7,7 +7,7 @@ let s:regex_all = '\v\s+$'
 " @param {string?} The filetype to check. Default &ft.
 function! trailguide#cares(...)
 	let l:ft = a:0 > 0 ? a:1 : &ft
-	return index(g:trailguide_exceptions, l:ft) == -1
+	return !&readonly && index(g:trailguide_exceptions, l:ft) == -1
 endfunction
 
 
