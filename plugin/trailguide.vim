@@ -1,24 +1,17 @@
+" trailguide.vim - Avoid trailing whitespace.
+" Author:       Nate Soares <http://so8r.es>
+" Version:      2.0.0
+" License:      The same as vim itself. (See |license|)
+
 if exists('g:loaded_trailguide')
 	finish
 endif
 let g:loaded_trailguide = 1
 
 
-" Filetypes in which to allow trailing whitespace.
-if !exists('g:trailguide_exceptions')
-	let g:trailguide_exceptions = []
-endif
-
-
 " Whether or not to highlight trailing whitespace automatically.
 if !exists('g:trailguide_autohl')
 	let g:trailguide_autohl = 1
-endif
-
-
-" The matchgroup to use for trailing whitespace.
-if !exists('g:trailguide_matchgroup')
-	let g:trailguide_matchgroup = 'ErrorMsg'
 endif
 
 
@@ -28,12 +21,26 @@ if !exists('g:trailguide_automap')
 endif
 
 
-command! TrailGuideNext call trailguide#next()
-command! TrailGuidePrev call trailguide#prev()
-command! TrailGuideShow call trailguide#show()
-command! TrailGuideHide call trailguide#hide()
-command! TrailGuideToggle call trailguide#toggle()
-command! -range=% TrailGuideFix call trailguide#fix(<line1>, <line2>)
+" Whether or not to make the default key mappings.
+if !exists('g:trailguide_defcmds')
+	let g:trailguide_defcmds = 1
+endif
+
+
+" The matchgroup to use for trailing whitespace.
+if !exists('g:trailguide_matchgroup')
+	let g:trailguide_matchgroup = 'ErrorMsg'
+endif
+
+
+if g:trailguide_defcmds
+	command! TrailGuideNext call trailguide#next()
+	command! TrailGuidePrev call trailguide#prev()
+	command! TrailGuideShow call trailguide#show()
+	command! TrailGuideHide call trailguide#hide()
+	command! TrailGuideToggle call trailguide#toggle()
+	command! -range=% TrailGuideFix call trailguide#fix(<line1>, <line2>)
+endif
 
 
 " Automatically highlight trailing whitespace. Default: 0.
@@ -48,14 +55,19 @@ if g:trailguide_autohl
 endif
 
 
-" Make the default key mappings.
+" Make the default key mappings under <leader>w. Mnemonic: 'whitespace'.
+" The leader letter can be configured via g:longline_automap.
 if !empty(g:trailguide_automap)
-	if type(g:trailguide_automap) == type(1)
-		let g:trailguide_automap = 'w'
-	endif
+	function! s:coerce(target, default)
+		return type(a:target) == type(a:default) ? a:target : a:default
+	endfunction
+	let s:map = 'noremap <unique> <silent>'
+	let s:prefix = '<leader>' . s:coerce(g:longline_automap, 'w')
 
-	exe 'noremap <leader>'.g:trailguide_automap.'n :TrailGideNext<CR>'
-	exe 'noremap <leader>'.g:trailguide_automap.'p :TrailGidePrev<CR>'
-	exe 'noremap <leader>'.g:trailguide_automap.'w :TrailGideFix<CR>'
-	exe 'noremap <leader>'.g:trailguide_automap.'t :TrailGuideToggle<CR>'
+	execute s:map s:prefix.'n :call trailguide#next()<CR>'
+	execute s:map s:prefix.'p :call trailguide#prev()<CR>'
+	execute s:map s:prefix.'w :call trailguide#fix()<CR>'
+	execute s:map s:prefix.'s :call trailguide#show()<CR>'
+	execute s:map s:prefix.'h :call trailguide#hide()<CR>'
+	execute s:map s:prefix.'t :call trailguide#toggle()<CR>'
 endif

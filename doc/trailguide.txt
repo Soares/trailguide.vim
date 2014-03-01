@@ -1,4 +1,4 @@
-*trailguide.txt*  Navigate past trailing whitespace.	*trailguide*
+*trailguide.txt	 Avoid trailing whitespace.	*trailguide*
 
 Author:  Nate Soares <http://so8r.es/>
 License: Same terms as Vim itself (see |license|)
@@ -6,12 +6,13 @@ License: Same terms as Vim itself (see |license|)
 =============================================================================
 CONTENTS					*trailguide-contents*
 	    1. Introduction............................|trailguide-intro|
-	    2. Configuration...........................|trailguide-config|
-	    3. Commands................................|trailguide-commands|
-	    4. Status line.............................|trailguide-statusline|
-	    5. Functions...............................|trailguide-functions|
-	    6. Mappings................................|trailguide-mappings|
-	    7. About...................................|trailguide-about|
+	    2. Usage...................................|trailguide-usage|
+	    3. Configuration...........................|trailguide-config|
+	    4. Commands................................|trailguide-commands|
+	    5. Status line.............................|trailguide-statusline|
+	    6. Functions...............................|trailguide-functions|
+	    7. Mappings................................|trailguide-mappings|
+	    8. About...................................|trailguide-about|
 
 =============================================================================
 INTRODUCTION					*trailguide-intro*
@@ -27,24 +28,43 @@ TrailGuide helps you out with trailing whitespace. It helps you:
 CONFIGURATION					*trailguide-config*
 
 						*g:trailguide_autohl*
-Whether or not to automatically highlight trailing whitespace.
-Default: 0
-
-						*g:trailguide_matchgroup*
-The matchgroup for trailing whitespace.
-Default: |ErrorMsg|
-
-						*g:trailguide_exceptions*
-A list of filetypes where trailing whitespace does not matter. Warnings will
-not be displayed for those filetypes. Automatic highlighting will not
-highlight trailing whitespace in those filetypes. Commands will still work.
-Default: []
+Whether or not to automatically highlight trailing whitespace. On by default.
 
 						*g:trailguide_automap*
-Enables the default mappings when non-empty. See |trailguide-mappings|.
-If set to a letter, all mappings will be bound under <leader><letter>.
-If set to 1, all mappings will be bound under <leader>w.
-Default: 0
+Makes the default mappings. See |trailguide-mappings|. Disabled by default.
+This can be set either to 1, in which case the mappings will be made under
+<leader>w, or to a string, in which case the mappings will be made under
+<leader>{g:trailguide_automap}.
+						*g:trailguide_defcmds*
+Whether or not to define the trailguide commands. Enabled by default. Use this
+to prevent the commands from being defined if (for example) you want to give
+the commands different names.
+
+						*g:trailguide_matchgroup*
+The matchgroup for trailing whitespace. Defaults to |ErrorMsg|. This is not
+actually semantically appropriate (as ErrorMsg is intended for command line
+errors) but it's the only default error group that (in most color schemes) has
+a red background. This is particularly important when we're highlighting
+whitespace. See also |group-name|.
+
+=============================================================================
+USAGE						*trailguide-usage*
+
+Trailguide does not, by default, highlight trailing whitespace in readonly
+files. (If you can't change it, it's better if you don't know about it.)
+
+You can make trailguide stop caring about a file by setting
+'b:trailguide' to 0 in that file. This can be done with autocmds to
+disable trailguide for entire filetypes.
+
+'b:trailguide' is checked by the highlighter only upon BufEnter: if the buffer
+has already been entered, you will need to do a :TrailGuideHide after setting
+b:trailguide=0 in order to turn off the highlighting.
+
+'b:trailguide' is continuously checked by the statusline flag.
+
+You can also set 'b:trailguide' to 1 in order to force trailguide to care.
+This currently only matters in readonly files.
 
 =============================================================================
 COMMANDS					*trailguide-commands*
@@ -71,6 +91,10 @@ COMMANDS					*trailguide-commands*
 
 =============================================================================
 STATUSLINE                                      *trailguide-statusline*
+
+trailguide#status#flag()			*trailguide#status#flag()*
+	Returns the most severe active flag. Currently, this is a future-proof
+	alias for |trailguide#status#warning()|.
 
 trailguide#status#warning()			*trailguide#status#warning()*
 	This function returns '[$]' if trailing whitespace exists, ''
@@ -101,11 +125,12 @@ MAPPINGS					*trailguide-mappings*
 trailguide does not change your mappings. We recommend that you add
 your own mappings for trailguide:
 >
-	" Mnemonic: 'whitespace'
-	noremap <leader>wn :TrailGideNext<CR>
-	noremap <leader>wp :TrailGidePrev<CR>
-	noremap <leader>ww :TrailGideFix<CR>
-	noremap <leader>wt :TrailGuideToggle<CR>
+	noremap <unique> <leader>wn :TrailGideNext<CR>
+	noremap <unique> <leader>wp :TrailGidePrev<CR>
+	noremap <unique> <leader>ww :TrailGideFix<CR>
+	noremap <unique> <leader>ws :TrailGuideToggle<CR>
+	noremap <unique> <leader>wt :TrailGuideToggle<CR>
+	noremap <unique> <leader>wt :TrailGuideToggle<CR>
 <
 If you like these mappings you can turn them on with |g:trailguide_automap|.
 You're encouraged to customize your mappings to your own taste.
