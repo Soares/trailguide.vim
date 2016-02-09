@@ -69,25 +69,26 @@ This currently only matters in readonly files.
 =============================================================================
 COMMANDS					*trailguide-commands*
 
-:TrailGuideNext					*:TrailGuideNext*
-	Jump to the next trailing whitespace.
+:[range]TrailGuide [ctrl]			*:TrailGuide*
+	[ctrl] may be any of: fix, next, prev, previous, hide, show, or
+	toggle. It may also be empty. 'prev' and 'previous' act identically.
+	If [ctrl] is empty, 'toggle' is used. [range] is only used if
+	[ctrl]=fix.
 
-:TrailGuidePrev					*:TrailGuidePrev*
-	Jump to the previous trailing whitespace.
+	If [ctrl]=fix, all trailing whitespace in [range] is eliminated.
+	[range] defaults to the entire file if omitted.
 
-:TrailGuideShow					*:TrailGuideShow*
-	Highlight trailing whitespace.
+	If [ctrl]=next, the cursor is jumped to the next trailing whitespace.
 
-:TrailGuideHide					*:TrailGuideHide*
-	Unhighlight trailing whitespace.
+	If [ctrl]=prev or [ctrl]=previous, the cursor is jumped to the
+	previous trailing whitespace.
 
-:TrailGuideToggle				*:TrailGuideToggle*
-	Toggle the highlighting of trailing whitespace.
+	If [ctrl]=hide, trailing whitespace highlighting is turned off.
 
-:[range]TrailGuideFix				*:TrailGuideFix*
-	Eliminating all trailing whitespace in the given [range].
+	If [ctrl]=show, trailing whitespace highlighting is turned on.
 
-	[range] defaults to the entire file.
+	If [ctrl]=toggle or if [ctrl] is omitted, trailing whitespace
+	highlighting is toggled.
 
 =============================================================================
 STATUSLINE                                      *trailguide-statusline*

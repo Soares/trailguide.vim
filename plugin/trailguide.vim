@@ -1,6 +1,6 @@
 " trailguide.vim - Avoid trailing whitespace.
 " Author:       Nate Soares <http://so8r.es>
-" Version:      2.0.0
+" Version:      3.0.0
 " License:      The same as vim itself. (See |license|)
 
 if exists('g:loaded_trailguide')
@@ -34,12 +34,7 @@ endif
 
 
 if g:trailguide_defcmds
-	command! TrailGuideNext call trailguide#next()
-	command! TrailGuidePrev call trailguide#prev()
-	command! TrailGuideShow call trailguide#show()
-	command! TrailGuideHide call trailguide#hide()
-	command! TrailGuideToggle call trailguide#toggle()
-	command! -range=% TrailGuideFix call trailguide#fix(<line1>, <line2>)
+	command! -nargs=? -range=% TrailGuide call trailguide#run(<q-args>, <line1>, <line2>)
 endif
 
 
