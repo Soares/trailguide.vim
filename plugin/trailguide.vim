@@ -75,12 +75,12 @@ if g:trailguide_autohl
 	augroup end
 endif
 
-noremap <Plug>trailguide#fix :call trailguide#fix(1, line('$'))<CR>
-noremap <Plug>trailguide#next :call trailguide#next()<CR>
-noremap <Plug>trailguide#prev :call trailguide#prev()<CR>
-noremap <Plug>trailguide#show :call trailguide#show()<CR>
-noremap <Plug>trailguide#hide :call trailguide#hide()<CR>
-noremap <Plug>trailguide#toggle :call trailguide#toggle()<CR>
+noremap <silent> <Plug>trailguide#fix :call trailguide#fix(1, line('$'))<CR>
+noremap <silent> <Plug>trailguide#next :call trailguide#next()<CR>
+noremap <silent> <Plug>trailguide#prev :call trailguide#prev()<CR>
+noremap <silent> <Plug>trailguide#show :call trailguide#show()<CR>
+noremap <silent> <Plug>trailguide#hide :call trailguide#hide()<CR>
+noremap <silent> <Plug>trailguide#toggle :call trailguide#toggle()<CR>
 
 " Make some key mappings under <leader>t.
 " The leader letter can be configured via g:trailguide_automap.
