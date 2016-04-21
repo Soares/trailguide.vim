@@ -1,6 +1,6 @@
 " trailguide.vim - Avoid trailing whitespace.
 " Author:       Nate Soares <http://so8r.es>
-" Version:      3.0.1
+" Version:      4.0.0
 " License:      The same as vim itself. (See |license|)
 
 let g:loaded_trailguide = 1
@@ -75,20 +75,20 @@ if g:trailguide_autohl
 	augroup end
 endif
 
-noremap <silent> <Plug>trailguide#fix :call trailguide#fix()<CR>
-noremap <silent> <Plug>trailguide#next :call trailguide#next()<CR>
-noremap <silent> <Plug>trailguide#prev :call trailguide#prev()<CR>
-noremap <silent> <Plug>trailguide#show :call trailguide#show()<CR>
-noremap <silent> <Plug>trailguide#hide :call trailguide#hide()<CR>
-noremap <silent> <Plug>trailguide#toggle :call trailguide#toggle()<CR>
+noremap <Plug>trailguide#fix :call trailguide#fix(1, line('$'))<CR>
+noremap <Plug>trailguide#next :call trailguide#next()<CR>
+noremap <Plug>trailguide#prev :call trailguide#prev()<CR>
+noremap <Plug>trailguide#show :call trailguide#show()<CR>
+noremap <Plug>trailguide#hide :call trailguide#hide()<CR>
+noremap <Plug>trailguide#toggle :call trailguide#toggle()<CR>
 
-" Make the default key mappings under <leader>w. Mnemonic: 'whitespace'.
+" Make some key mappings under <leader>t.
 " The leader letter can be configured via g:trailguide_automap.
-if !empty(g:trailguide_automap)
-	noremap <silent> <leader>ww <Plug>trailguide#fix
-	noremap <silent> <leader>wn <Plug>trailguide#next
-	noremap <silent> <leader>wp <Plug>trailguide#prev
-	noremap <silent> <leader>ws <Plug>trailguide#show
-	noremap <silent> <leader>wh <Plug>trailguide#hide
-	noremap <silent> <leader>wt <Plug>trailguide#toggle
+if g:trailguide_automap
+  nmap <leader>tf <Plug>trailguide#fix
+  nmap <leader>tn <Plug>trailguide#next
+  nmap <leader>tp <Plug>trailguide#prev
+  nmap <leader>ts <Plug>trailguide#show
+  nmap <leader>th <Plug>trailguide#hide
+  nmap <leader>tt <Plug>trailguide#toggle
 endif

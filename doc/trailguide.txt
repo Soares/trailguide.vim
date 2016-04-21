@@ -133,12 +133,12 @@ trailguide provides the following |<Plug>| mappings:
 
 trailguide does not change your mappings. If you like the following mappings:
 >
-	noremap <unique> <leader>ww :TrailGideFix<CR>
-	noremap <unique> <leader>wn :TrailGideNext<CR>
-	noremap <unique> <leader>wp :TrailGidePrev<CR>
-	noremap <unique> <leader>ws :TrailGuideShow<CR>
-	noremap <unique> <leader>wh :TrailGuideHide<CR>
-	noremap <unique> <leader>wt :TrailGuideToggle<CR>
+	noremap <unique> <leader>tf :TrailGideFix<CR>
+	noremap <unique> <leader>tn :TrailGideNext<CR>
+	noremap <unique> <leader>tp :TrailGidePrev<CR>
+	noremap <unique> <leader>ts :TrailGuideShow<CR>
+	noremap <unique> <leader>th :TrailGuideHide<CR>
+	noremap <unique> <leader>tt :TrailGuideToggle<CR>
 <
 set |g:trailguide_automap| to 1.  You're encouraged to customize your mappings
 to your own taste using the plug mappings.
