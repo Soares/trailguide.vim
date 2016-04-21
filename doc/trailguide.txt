@@ -36,9 +36,10 @@ This can be set either to 1, in which case the mappings will be made under
 <leader>w, or to a string, in which case the mappings will be made under
 <leader>{g:trailguide_automap}.
 						*g:trailguide_defcmds*
-Whether or not to define the trailguide commands. Enabled by default. Use this
-to prevent the commands from being defined if (for example) you want to give
-the commands different names.
+Whether or not to define the trailguide commands. Enabled by default. Set it
+to 0 to prevent the TrailGuide command from being defined if (for example) you
+just want to use the mappings. Set it to -1 and source plugin/trailguide.vim to
+remove the existing commands.
 
 						*g:trailguide_matchgroup*
 The matchgroup for trailing whitespace. Defaults to |ErrorMsg|. This is not
