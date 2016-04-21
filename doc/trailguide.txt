@@ -134,12 +134,12 @@ following |<Plug>| mappings:
 <
 If you like the following mappings:
 >
-	noremap <unique> <leader>tf :TrailGideFix<CR>
-	noremap <unique> <leader>tn :TrailGideNext<CR>
-	noremap <unique> <leader>tp :TrailGidePrev<CR>
-	noremap <unique> <leader>ts :TrailGuideShow<CR>
-	noremap <unique> <leader>th :TrailGuideHide<CR>
-	noremap <unique> <leader>tt :TrailGuideToggle<CR>
+	nmap <leader>tf <Plug>trailguide#fix
+	nmap <leader>tn <Plug>trailguide#next
+	nmap <leader>tp <Plug>trailguide#prev
+	nmap <leader>ts <Plug>trailguide#show
+	nmap <leader>th <Plug>trailguide#hide
+	nmap <leader>tt <Plug>trailguide#toggle
 <
 then set |g:trailguide_automap| to 1. You're encouraged to customize your
 mappings to your own taste using the plug mappings.
