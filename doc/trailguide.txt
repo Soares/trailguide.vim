@@ -122,16 +122,17 @@ trailguide#detected()				*trailguide#detected()*
 =============================================================================
 MAPPINGS					*trailguide-mappings*
 
-trailguide provides the following |<Plug>| mappings:
-
+trailguide does not change your mappings by default. Instead, it provides the
+following |<Plug>| mappings:
+>
 	<Plug>trailguide#fix
 	<Plug>trailguide#next
 	<Plug>trailguide#prev
 	<Plug>trailguide#show
 	<Plug>trailguide#hide
 	<Plug>trailguide#toggle
-
-trailguide does not change your mappings. If you like the following mappings:
+<
+If you like the following mappings:
 >
 	noremap <unique> <leader>tf :TrailGideFix<CR>
 	noremap <unique> <leader>tn :TrailGideNext<CR>
@@ -140,8 +141,8 @@ trailguide does not change your mappings. If you like the following mappings:
 	noremap <unique> <leader>th :TrailGuideHide<CR>
 	noremap <unique> <leader>tt :TrailGuideToggle<CR>
 <
-set |g:trailguide_automap| to 1.  You're encouraged to customize your mappings
-to your own taste using the plug mappings.
+then set |g:trailguide_automap| to 1. You're encouraged to customize your
+mappings to your own taste using the plug mappings.
 
 =============================================================================
 ABOUT                                           *trailguide-about*
