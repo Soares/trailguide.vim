@@ -75,20 +75,20 @@ if g:trailguide_autohl
 	augroup end
 endif
 
+noremap <silent> <Plug>trailguide#fix :call trailguide#fix()<CR>
+noremap <silent> <Plug>trailguide#next :call trailguide#next()<CR>
+noremap <silent> <Plug>trailguide#prev :call trailguide#prev()<CR>
+noremap <silent> <Plug>trailguide#show :call trailguide#show()<CR>
+noremap <silent> <Plug>trailguide#hide :call trailguide#hide()<CR>
+noremap <silent> <Plug>trailguide#toggle :call trailguide#toggle()<CR>
 
 " Make the default key mappings under <leader>w. Mnemonic: 'whitespace'.
 " The leader letter can be configured via g:trailguide_automap.
 if !empty(g:trailguide_automap)
-	function! s:coerce(target, default)
-		return type(a:target) == type(a:default) ? a:target : a:default
-	endfunction
-	let s:map = 'noremap <unique> <silent>'
-	let s:prefix = '<leader>' . s:coerce(g:trailguide_automap, 'w')
-
-	execute s:map s:prefix.'n :call trailguide#next()<CR>'
-	execute s:map s:prefix.'p :call trailguide#prev()<CR>'
-	execute s:map s:prefix.'w :call trailguide#fix()<CR>'
-	execute s:map s:prefix.'s :call trailguide#show()<CR>'
-	execute s:map s:prefix.'h :call trailguide#hide()<CR>'
-	execute s:map s:prefix.'t :call trailguide#toggle()<CR>'
+	noremap <silent> <leader>ww <Plug>trailguide#fix
+	noremap <silent> <leader>wn <Plug>trailguide#next
+	noremap <silent> <leader>wp <Plug>trailguide#prev
+	noremap <silent> <leader>ws <Plug>trailguide#show
+	noremap <silent> <leader>wh <Plug>trailguide#hide
+	noremap <silent> <leader>wt <Plug>trailguide#toggle
 endif

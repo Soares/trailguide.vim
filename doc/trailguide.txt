@@ -32,9 +32,7 @@ Whether or not to automatically highlight trailing whitespace. On by default.
 
 						*g:trailguide_automap*
 Makes the default mappings. See |trailguide-mappings|. Disabled by default.
-This can be set either to 1, in which case the mappings will be made under
-<leader>w, or to a string, in which case the mappings will be made under
-<leader>{g:trailguide_automap}.
+
 						*g:trailguide_defcmds*
 Whether or not to define the trailguide commands. Enabled by default. Set it
 to 0 to prevent the TrailGuide command from being defined if (for example) you
@@ -124,18 +122,26 @@ trailguide#detected()				*trailguide#detected()*
 =============================================================================
 MAPPINGS					*trailguide-mappings*
 
-trailguide does not change your mappings. We recommend that you add
-your own mappings for trailguide:
+trailguide provides the following |<Plug>| mappings:
+
+	<Plug>trailguide#fix
+	<Plug>trailguide#next
+	<Plug>trailguide#prev
+	<Plug>trailguide#show
+	<Plug>trailguide#hide
+	<Plug>trailguide#toggle
+
+trailguide does not change your mappings. If you like the following mappings:
 >
+	noremap <unique> <leader>ww :TrailGideFix<CR>
 	noremap <unique> <leader>wn :TrailGideNext<CR>
 	noremap <unique> <leader>wp :TrailGidePrev<CR>
-	noremap <unique> <leader>ww :TrailGideFix<CR>
-	noremap <unique> <leader>ws :TrailGuideToggle<CR>
-	noremap <unique> <leader>wt :TrailGuideToggle<CR>
+	noremap <unique> <leader>ws :TrailGuideShow<CR>
+	noremap <unique> <leader>wh :TrailGuideHide<CR>
 	noremap <unique> <leader>wt :TrailGuideToggle<CR>
 <
-If you like these mappings you can turn them on with |g:trailguide_automap|.
-You're encouraged to customize your mappings to your own taste.
+set |g:trailguide_automap| to 1.  You're encouraged to customize your mappings
+to your own taste using the plug mappings.
 
 =============================================================================
 ABOUT                                           *trailguide-about*
