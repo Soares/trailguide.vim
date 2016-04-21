@@ -1,6 +1,6 @@
 " trailguide.vim - Avoid trailing whitespace.
 " Author:       Nate Soares <http://so8r.es>
-" Version:      3.0.0
+" Version:      3.0.1
 " License:      The same as vim itself. (See |license|)
 
 if exists('g:loaded_trailguide')
