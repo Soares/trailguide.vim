@@ -51,13 +51,13 @@ endif
 
 
 " Make the default key mappings under <leader>w. Mnemonic: 'whitespace'.
-" The leader letter can be configured via g:longline_automap.
+" The leader letter can be configured via g:trailguide_automap.
 if !empty(g:trailguide_automap)
 	function! s:coerce(target, default)
 		return type(a:target) == type(a:default) ? a:target : a:default
 	endfunction
 	let s:map = 'noremap <unique> <silent>'
-	let s:prefix = '<leader>' . s:coerce(g:longline_automap, 'w')
+	let s:prefix = '<leader>' . s:coerce(g:trailguide_automap, 'w')
 
 	execute s:map s:prefix.'n :call trailguide#next()<CR>'
 	execute s:map s:prefix.'p :call trailguide#prev()<CR>'
