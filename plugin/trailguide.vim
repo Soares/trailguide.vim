@@ -31,31 +31,12 @@ endif
 
 
 if g:trailguide_defcmds > 0
-  function! s:run(arg, line1, line2)
-    if a:arg ==# 'fix'
-      call trailguide#fix(a:line1, a:line2)
-    elseif a:arg ==# 'prev' || a:arg ==# 'previous'
-      call trailguide#prev()
-    elseif a:arg ==# 'next'
-      call trailguide#next()
-    elseif a:arg ==# 'show'
-      call trailguide#show()
-    elseif a:arg ==# 'hide'
-      call trailguide#hide()
-    elseif a:arg ==# 'toggle' || a:arg ==# ''
-      call trailguide#toggle()
-    else
-      echohl ErrorMsg
-      echo "Unknown TrailGuide command:" a:arg
-      echohl None
-    endif
-  endfunction
   if exists(':TrailGuide') == 2
     echomsg 'overwriting command :TrailGuide'
   endif
   " The arg may be any of: fix, prev(ious), next, show, hide, toggle, and may be
   " empty. If it is empty, 'toggle' is used.
-	command! -nargs=? -range=% TrailGuide call s:run(<q-args>, <line1>, <line2>)
+	command! -nargs=? -range=% TrailGuide call trailguide#run(<q-args>, <line1>, <line2>)
 elseif g:trailguide_defcmds < 0
   if exists(':TrailGuide') == 2
     echomsg 'deleting command :TrailGuide'

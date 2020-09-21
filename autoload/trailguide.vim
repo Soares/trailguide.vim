@@ -1,3 +1,23 @@
+function! trailguide#run(arg, line1, line2)
+	if a:arg ==# 'fix'
+		call trailguide#fix(a:line1, a:line2)
+	elseif a:arg ==# 'prev' || a:arg ==# 'previous'
+		call trailguide#prev()
+	elseif a:arg ==# 'next'
+		call trailguide#next()
+	elseif a:arg ==# 'show'
+		call trailguide#show()
+	elseif a:arg ==# 'hide'
+		call trailguide#hide()
+	elseif a:arg ==# 'toggle' || a:arg ==# ''
+		call trailguide#toggle()
+	else
+		echohl ErrorMsg
+		echo "Unknown TrailGuide command:" a:arg
+		echohl None
+	endif
+endfunction
+
 " Regular Expressions:
 let s:regex = '\v\s+%#@<!$'
 let s:regex_all = '\v\s+$'
