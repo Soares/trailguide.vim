@@ -36,7 +36,7 @@ if g:trailguide_defcmds > 0
   endif
   " The arg may be any of: fix, prev(ious), next, show, hide, toggle, and may be
   " empty. If it is empty, 'toggle' is used.
-	command! -nargs=? -range=% TrailGuide call trailguide#run(<q-args>, <line1>, <line2>)
+	command! -nargs=? -range=% -complete=customlist,trailguide#complete TrailGuide call trailguide#run(<q-args>, <line1>, <line2>)
 elseif g:trailguide_defcmds < 0
   if exists(':TrailGuide') == 2
     echomsg 'deleting command :TrailGuide'
